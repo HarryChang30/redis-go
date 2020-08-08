@@ -3,8 +3,10 @@
 Redis go implementation by using package library go-redis dependency. Simulating the time process for each operations in redis instance / clusters.
 
 ## Pre-requisites
-Redis version 5.0.3 \
-Go v1.12 or latest version
+The integration is required some installation redis local instance
+
+- Redis v5.0.3 or latest version
+- Go v1.12 or latest version
 
 ## Running Project Steps
 1. Clone repo from the repository \
