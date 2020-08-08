@@ -18,8 +18,8 @@ The integration is required some installation redis local instance
 1. Clone repo from the repository \
 ```git clone https://github.com/HarryChang30/redis-go.git```
 
-2. To build the project and dependencies \
-```go build .```
+2. To download project and dependencies \
+```go get -d ./...```
 
 3. Run the program \
 ```go run main.go```
