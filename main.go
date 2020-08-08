@@ -37,9 +37,18 @@ func main() {
 	getNow := time.Now()
 	val, err := redisgo.Get(ctx, redisKey, rdb)
 	if err != nil {
-		fmt.Printf("Key harry in redis does not exists\n")
+		fmt.Printf("Key %v in redis does not exists\n", redisKey)
 	} else {
-		fmt.Printf("Key harry in redis exists with value %v\n", val)
+		fmt.Printf("Key %v in redis exists with value %v\n", redisKey, val)
 	}
 	log.Printf("Processing get redis for single command: %+v\n", time.Since(getNow))
+
+	// Massive Single Command Set key
+	var loopSize int
+	fmt.Print("Enter loop size: ")
+	fmt.Scanln(&loopSize)
+
+	setMassiveNow := time.Now()
+	redisgo.SingleMassiveSet(ctx, redisKey, redisValue, time.Duration(redisExpiry)*time.Second, loopSize, rdb)
+	log.Printf("Processing set redis massive for single command: %+v\n", time.Since(setMassiveNow))
 }
