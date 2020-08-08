@@ -35,7 +35,7 @@ func main() {
 
 	// Get key
 	getNow := time.Now()
-	val, err := redisgo.Get(ctx, "harry", rdb)
+	val, err := redisgo.Get(ctx, redisKey, rdb)
 	if err != nil {
 		fmt.Printf("Key harry in redis does not exists\n")
 	} else {
