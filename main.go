@@ -51,4 +51,25 @@ func main() {
 	setMassiveNow := time.Now()
 	redisgo.SingleMassiveSet(ctx, redisKey, redisValue, time.Duration(redisExpiry)*time.Second, loopSize, rdb)
 	log.Printf("Processing set redis massive for single command: %+v\n", time.Since(setMassiveNow))
+
+	// Pipeline single execute command line
+	var expirationPipe int
+	fmt.Print("Enter expiration pipeline: ")
+	fmt.Scanln(&expirationPipe)
+
+	setPipelineNow := time.Now()
+	redisgo.Pipeline(ctx, redisKey, time.Duration(expirationPipe)*time.Second, rdb)
+	log.Printf("Processing pipeline: %+v\n", time.Since(setPipelineNow))
+
+	// Pipeline single execute multiple command line
+	setMassivePipeline := time.Now()
+	n := map[string]string{
+		"harry":  "12345",
+		"tonny":  "123",
+		"adsa":   "123123asd",
+		"asdad":  "12314",
+		"czxczc": "414123",
+	}
+	redisgo.PipelineMassiveInsert(ctx, n, time.Duration(expirationPipe)*time.Second, rdb)
+	log.Printf("Processing multiple set key value massive pipeline: %+v\n", time.Since(setMassivePipeline))
 }
